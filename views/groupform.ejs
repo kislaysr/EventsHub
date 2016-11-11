@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>EVENTSHUB</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/javascripts/angular.js"></script>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+        /****** LOGIN MODAL ******/
+        .loginmodal-container {
+          padding: 30px;
+          max-width: 550px;
+          width: 100% !important;
+          background-color: #F7F7F7;
+          margin: 0 auto;
+          border-radius: 2px;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+          overflow: hidden;
+          font-family: roboto;
+        }
+
+        .loginmodal-container h1 {
+          text-align: center;
+          font-size: 1.8em;
+          font-family: roboto;
+        }
+
+        .loginmodal-container input[type=submit] {
+          width: 100%;
+          display: block;
+          margin-bottom: 10px;
+          position: relative;
+        }
+
+        .loginmodal-container input[type=text], input[type=password] {
+          height: 44px;
+          font-size: 16px;
+          width: 100%;
+          margin-bottom: 10px;
+          -webkit-appearance: none;
+          background: #fff;
+          border: 1px solid #d9d9d9;
+          border-top: 1px solid #c0c0c0;
+          /* border-radius: 2px; */
+          padding: 0 8px;
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+        }
+
+        .loginmodal-container input[type=text]:hover, input[type=password]:hover {
+          border: 1px solid #b9b9b9;
+          border-top: 1px solid #a0a0a0;
+          -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+          -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+          box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .loginmodal {
+          text-align: center;
+          font-size: 14px;
+          font-family: 'Arial', sans-serif;
+          font-weight: 700;
+          height: 36px;
+          padding: 0 8px;
+        /* border-radius: 3px; */
+        /* -webkit-user-select: none;
+          user-select: none; */
+        }
+
+        .loginmodal-submit {
+          /* border: 1px solid #3079ed; */
+          border: 0px;
+          color: #fff;
+          text-shadow: 0 1px rgba(0,0,0,0.1); 
+          background-color: #4d90fe;
+          padding: 17px 0px;
+          font-family: roboto;
+          font-size: 14px;
+          /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+        }
+
+        .loginmodal-submit:hover {
+          /* border: 1px solid #2f5bb7; */
+          border: 0px;
+          text-shadow: 0 1px rgba(0,0,0,0.3);
+          background-color: #357ae8;
+          /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+        }
+
+        .loginmodal-container a {
+          text-decoration: none;
+          color: #666;
+          font-weight: 400;
+          text-align: center;
+          display: inline-block;
+          opacity: 0.6;
+          transition: opacity ease 0.5s;
+        } 
+
+        .login-help{
+          font-size: 12px;
+        }
+body {
+    background-image: url("/images/about-bg.jpg");
+    background-color: #cccccc;
+}
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $("#login-modal").modal();
+});
+</script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" id="nav-bar" >
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="/">EVENTSHUB</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    
+                    <li>
+                        <a href="/profile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/event/events">Events</a>
+                    </li>
+                    <li>
+                        <a href="/group">Group</a>
+                    </li>
+                     <li>
+                        <a href="/group/creategroup">Create Group</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a>Hello!! <%= username %></a>
+                    </li>
+                
+                    <li id="logout">
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+<div class="container" onload="#login-modal">
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog" style="margin-top: 60px">
+                <div class="loginmodal-container">
+    <h1><span class="fa fa-sign-in"></span> Enter Group Details</h1>
+
+    <div class="row" >
+        <form  action="/group/registergroup" method="post">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" name="title">
+             </div>
+            <div class="form-group">
+                <label for="description">Decription:</label>
+                <input type="text" class="form-control" name="description">
+            </div>
+            <div class="form-group">
+                <label for="email">EmailId:</label>
+                <input type="text" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <select class="form-control" name="type">
+                <% for(var i=0;i<3;i++){%>
+                <option class="form-control" name="type"><label for="technical"><%= type[i] %></label>
+                <%}%>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Show Group-members:</label>
+                <input type="checkbox" class="form-control" name="showgroupmembers">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+
+              
+<!--old befor dbms review3 -->
+
+</div>
+<!-- jQuery -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/js/jqBootstrapValidation.js"></script>
+    <script src="/js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="/js/clean-blog.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>EventsHub</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+-->
+    <!-- Theme CSS -->
+    <!--
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+  
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="/javascripts/angular.js"></script>
+    
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+   
+<style type="text/css">
+    
+       
+body{
+    padding-top: 0px;
+}
+
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-fixed" role="navigation">
+-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!--
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">eVENTSHUB</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/profile">Dashboard</a></li>
+            <li><a href="/event/events">Events</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Hello <%= username %></a></li>
+            <li class="dropdown">
+                <a href="/group" class="active" >Group <b class="caret"></b></a>
+            
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Group Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+ 
+    
+
+      
+
+</div>
+</body>
+
+    <script src="javascripts/bootstrap.min.js"></script> -->
+    <!-- Morris.js charts -->
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+     
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+</html>
+-->
